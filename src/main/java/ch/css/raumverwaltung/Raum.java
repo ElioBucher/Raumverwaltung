@@ -24,11 +24,9 @@ public class Raum {
         }
     }
 
-
     public int getRaumnummer() {
         return raumnummer;
     }
-
     public int getKapazitaet() {
         return kapazitaet;
     }
@@ -40,4 +38,15 @@ public class Raum {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    // AI
+    @Override
+    public String toString() {
+        return "Raum: \n" +
+                "Raumnummer = " + raumnummer + "\n" +
+                "Kapazität = " + kapazitaet + "\n" +
+                "Status = " + status + "\n\n" +
+                "================================\n";
+    }
+    // bis hier AI
 }
