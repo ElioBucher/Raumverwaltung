@@ -1,9 +1,13 @@
 package ch.css.raumverwaltung;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Raum {
     private final int raumnummer;
     private final int kapazitaet;
-    Status status = Status.frei;
+    private Status status;
+    List<Reservation> reservationen = new ArrayList<>() {};
 
     public Raum (int raumnummer, int kapazitaet, Status status) {
 
@@ -16,18 +20,25 @@ public class Raum {
         this.status = status;
     }
 
-    public boolean istFrei() {
-        if (status == Status.frei) {
-            return true;
-        } else {
-            return false;
+    public boolean istFrei(LocalDateTime start, LocalDateTime end) {
+        for (Reservation reservation : reservationen) {
+            if (reservation.schneidetSich(start, end)) {
+                return false;
+            }
         }
+        return true;
+    }
+
+    public void addRes(Reservation reservation) {
+        reservationen.add(reservation);
     }
 
     public int getRaumnummer() {
+
         return raumnummer;
     }
     public int getKapazitaet() {
+
         return kapazitaet;
     }
 

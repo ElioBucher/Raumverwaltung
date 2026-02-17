@@ -1,5 +1,6 @@
 package ch.css.raumverwaltung;
 import java.util.HashMap;
+import java.time.LocalDateTime;
 
 public class Raumverwaltung {
 
@@ -20,16 +21,16 @@ public class Raumverwaltung {
         Raum aktRaum = raeume.get(raumnummer);
         if (aktRaum == null) {
             throw new InvalidDatasException("Raum existiert nicht!");
-        } else {
-            return aktRaum;
         }
+        return aktRaum;
+
     }
 
-    public Raum resRaum(int anzahlPersonen) {
+    public Reservation resRaum(int anzahlPersonen, LocalDateTime start, LocalDateTime end) {
         Raum kleinsterRaum = null;
 
         for (Raum aktRaum : raeume.values()) {
-            if (aktRaum.getKapazitaet() >= anzahlPersonen && aktRaum.istFrei()) {
+            if (aktRaum.getKapazitaet() >= anzahlPersonen && aktRaum.istFrei(start, end)) {
                 if (kleinsterRaum == null || aktRaum.getKapazitaet() < kleinsterRaum.getKapazitaet()) {
                     kleinsterRaum = aktRaum;
                 }
@@ -38,14 +39,19 @@ public class Raumverwaltung {
         if (kleinsterRaum == null) {
             throw new InvalidDatasException("Keinen passenden Raum gefunden!");
         }
+        Reservation reservation = new Reservation(kleinsterRaum, start, end);
+        kleinsterRaum.addRes(reservation);
         kleinsterRaum.setStatus(Status.besetzt);
-        return kleinsterRaum;
+        return reservation;
     }
 
     public void resetRaum(int raumnummer) {
         Raum aktRaum = getRaum(raumnummer);
         if (aktRaum.getStatus() == Status.frei) {
             throw new InvalidDatasException("Der Raum ist bereits frei!");
+        }
+        if (aktRaum.getStatus() == Status.gesperrt) {
+            throw new InvalidDatasException("Der Raum ist gesperrt und kann nicht zurückgesetzt werden!");
         }
         aktRaum.setStatus(Status.frei);
     }
