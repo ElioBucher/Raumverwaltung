@@ -7,7 +7,7 @@ public class Raum {
     private final int raumnummer;
     private final int kapazitaet;
     private Status status;
-    List<Reservation> reservationen = new ArrayList<>() {};
+    private final List<Reservation> reservationen = new ArrayList<>();
 
     public Raum (int raumnummer, int kapazitaet, Status status) {
 
@@ -60,4 +60,8 @@ public class Raum {
                 "================================\n";
     }
     // bis hier AI
+
+    public List<Reservation> getReservationen() {
+        return reservationen;
+    }
 }
