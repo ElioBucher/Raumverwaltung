@@ -124,7 +124,7 @@ public class Raumverwaltung {
                         "ID: " + benutzer.getId() +
                                 ", Name: " + benutzer.getName() +
                                 ", Rolle: " + benutzer.getRolle() + "\n" +
-                                "================================\n"
+                                "=================================\n"
                 );
             }
         }

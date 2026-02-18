@@ -36,6 +36,7 @@ public class Raum {
     }
 
     public void addRes(Reservation reservation) {
+
         reservationen.add(reservation);
     }
 
