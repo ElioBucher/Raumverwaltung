@@ -64,7 +64,7 @@ public class Raum {
                 "Raumnummer = " + raumnummer + "\n" +
                 "Kapazität = " + kapazitaet + "\n" +
                 "Status = " + status + "\n\n" +
-                "================================\n";
+                "===============================\n";
     }
     // bis hier AI
 
