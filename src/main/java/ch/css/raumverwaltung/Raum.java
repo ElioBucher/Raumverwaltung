@@ -2,6 +2,7 @@ package ch.css.raumverwaltung;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Raum {
     private final int raumnummer;
@@ -18,6 +19,11 @@ public class Raum {
         this.raumnummer = raumnummer;
         this.kapazitaet = kapazitaet;
         this.status = status;
+    }
+
+    public Raum(int raumnummer, int kapazitaet) {
+
+        this(raumnummer, kapazitaet, Status.frei);
     }
 
     public boolean istFrei(LocalDateTime start, LocalDateTime end) {

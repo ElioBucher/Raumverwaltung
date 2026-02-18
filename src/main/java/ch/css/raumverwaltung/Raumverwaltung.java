@@ -1,11 +1,12 @@
 package ch.css.raumverwaltung;
 import java.util.HashMap;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public class Raumverwaltung {
 
     private final HashMap<Integer, Raum> raeume = new HashMap<>();
-    private final HashMap<Integer, Benutzer> benutzerMap = new HashMap<>();
+    private final Map<Integer, Benutzer> benutzerMap = new HashMap<>();
 
     public Raumverwaltung() {
         raeume.put(600, new Raum(600, 18, Status.frei));
